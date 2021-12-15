@@ -14,7 +14,7 @@ public class CreditCalculator {
                 "The loan has been repaid!");
         Scanner in = new Scanner(System.in);
         double allmoney;
-        System.out.println("enter stage a/p/n");
+        System.out.println("enter stage a/p/n/d");
         String stage = in.next();
         if (stage.equals("a")){
             System.out.println("enter all money");
@@ -55,6 +55,22 @@ public class CreditCalculator {
             else {
                 System.out.println("Years: " + month/12 + " + Month " + (month-(month/12*12)));
             }
+        }
+        else if (stage.equals("d")){
+            System.out.println("enter all money");
+            allmoney = in.nextDouble();
+            System.out.println("Month: ");
+            month = in.nextDouble();
+            System.out.println("procent: ");
+            procent = in.nextDouble()/1200;
+            double dopzp = 0;
+
+            for ( int i = 1; i <= month; i++){
+                double d = round(allmoney / month + procent * (allmoney - (allmoney * (i - 1)) / month));
+                dopzp = dopzp + (d - (allmoney/month));
+                System.out.println("Difference pay: " + d);
+            }
+            System.out.println("All dop pay: " + dopzp);
         }
         else {
             System.out.println("Incorrect");
