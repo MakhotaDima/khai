@@ -24,45 +24,50 @@ public class hangman {
             test = cor_word.length();
             t = 0;
             letter = in.next();
-            for (int i1 = 0; i1 < cor_word.length(); i1++){
-                if (letter.charAt(0) == cor_word.charAt(i1)){
-                    word2[i1] = letter;
-                    t++;
-                }
+            if (letter.length() >1){
+                System.out.println("You should input a single letter.");
+                i--;
             }
-            for (int i1 = 0; i1 < cor_word.length(); i1++){
-                System.out.print(word2[i1]);
-            }
-            for (int i1 = 0; i1 < cor_word.length(); i1++){
-                if (!word2[i1].equals("-")){
-                    test--;
+            else {
+                for (int i1 = 0; i1 < cor_word.length(); i1++) {
+                    if (letter.charAt(0) == cor_word.charAt(i1)) {
+                        word2[i1] = letter;
+                        t++;
+                    }
                 }
-                if (test == 0){
-                    System.out.println("YOU Survived!");
-                    System.exit(0);
+                for (int i1 = 0; i1 < cor_word.length(); i1++) {
+                    System.out.print(word2[i1]);
                 }
-            }
-            System.out.println();
-            for (int i1 = 0; i1 < chapt; i1++) {
-                if (lost_letter[i1].charAt(0) == letter.charAt(0)){
-                    c++;
+                for (int i1 = 0; i1 < cor_word.length(); i1++) {
+                    if (!word2[i1].equals("-")) {
+                        test--;
+                    }
+                    if (test == 0) {
+                        System.out.println("YOU Survived!");
+                        System.exit(0);
+                    }
                 }
-            }
-            if (t !=0 ){
+                System.out.println();
+                for (int i1 = 0; i1 < chapt; i1++) {
+                    if (lost_letter[i1].charAt(0) == letter.charAt(0)) {
+                        c++;
+                    }
+                }
+                if (t != 0) {
                     i--;
-            }
-            else{
-                if(c != 0){
-                    System.out.println("No improvements");
+                } else {
+                    if (c != 0) {
+                        System.out.println("No improvements");
+                        i--;
+                    } else {
+                        System.out.println("That letter doesnt appear in the word");
+                    }
                 }
-                else {
-                    System.out.println("That letter doesnt appear in the word");
-                }
+
+                lost_letter[chapt] = letter;
+
+                chapt++;
             }
-
-            lost_letter[chapt] = letter;
-
-            chapt++;
 
 
         }
