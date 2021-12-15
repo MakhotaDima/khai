@@ -1,44 +1,59 @@
 import java.util.Scanner;
 
+import static java.lang.Math.*;
+
 public class CreditCalculator {
     public static void main (String[] args){
-        int month;
-        int pay;
+        double month;
+        double pay;
+        double procent;
         System.out.println("Loan principal: 1000\n" +
                 "Month 1: repaid 250\n" +
                 "Month 2: repaid 250\n" +
                 "Month 3: repaid 500\n" +
                 "The loan has been repaid!");
         Scanner in = new Scanner(System.in);
-        System.out.println("enter all money");
-        int allmoney = in.nextInt();
-        System.out.println("enter stage m/p");
+        double allmoney;
+        System.out.println("enter stage a/p/n");
         String stage = in.next();
-        if (stage.equals("m")){
-            System.out.println("pay per month: ");
-            pay = in.nextInt();
-            if (allmoney%pay == 0) {
-                month = allmoney / pay;
-            }
-            else {
-                month = allmoney/pay+1;
-            }
-            System.out.println(month);
+        if (stage.equals("a")){
+            System.out.println("enter all money");
+            allmoney = in.nextDouble();
+            System.out.println("Month: ");
+            month = in.nextDouble();
+            System.out.println("procent: ");
+            procent = in.nextDouble()/1200;
+            pay = allmoney * (procent * pow(1 + procent, month));
+            System.out.println("You must pay per month: " + pay);
         }
         else if (stage.equals("p")){
+            System.out.println("procent: ");
+            procent = in.nextDouble()/1200;
             System.out.println("Month: ");
-            month = in.nextInt();
-            if (allmoney%month == 0){
-                pay = allmoney/month;
+            month = in.nextDouble();
+            System.out.println("pay per month: ");
+            pay = in.nextDouble();
+
+            allmoney = pay / ((procent * pow(1 + procent, month)) / (pow(1 + procent, month) - 1));
+            System.out.println("All money: " + allmoney);
+        }
+        else if (stage.equals("n")){
+            System.out.println("pay per month: ");
+            pay = in.nextDouble();
+            System.out.println("enter all money");
+            allmoney = in.nextDouble();
+            System.out.println("procent: ");
+            procent = in.nextDouble()/1200;
+
+            month = log(pay / (pay - procent * allmoney)) / log(1 + procent);
+            System.out.println(month);
+            month = round(month);
+            System.out.println(month);
+            if (month%12 == 0){
+                System.out.println("Years: " + month/12);
             }
             else {
-                pay = allmoney/month+1;
-            }
-            if (pay%month == 0){
-                System.out.println("You must paying " + pay + " per month");
-            }
-            else {
-                System.out.println("You must pay " + pay + " per month, but last month you need only " + (allmoney-(pay*(month-1))));
+                System.out.println("Years: " + month/12 + " + Month " + (month-(month/12*12)));
             }
         }
         else {
