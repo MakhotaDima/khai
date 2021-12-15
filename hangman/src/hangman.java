@@ -15,13 +15,19 @@ public class hangman {
             word2[i] = "-";
         }
         String letter;
+
+
         for (int i = 0; i < 8; i++) {
             letter = in.next();
             for (int i1 = 0; i1 < cor_word.length(); i1++){
-                if (letter.equals(cor_word.charAt(i1))){
+                if (letter.charAt(0) == cor_word.charAt(i1)){
                     word2[i1] = letter;
                 }
             }
+            for (int i1 = 0; i1 < cor_word.length(); i1++){
+                System.out.print(word2[i1]);
+            }
+            System.out.println();
 
         }
         System.out.println("You Died");
