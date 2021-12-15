@@ -7,8 +7,7 @@ public class CoffeeMachine {
         int w = 400, m = 100, c = 12, grn = 550, stakan = 9;
         int all;
         for(;;) {
-            System.out.println("The coffee machine has: " + w + "  Water, " + m + " Milk, " + c + " Coffee, " + grn + " grn, " + stakan + " stakan");
-            System.out.println("What are you doing? buy/fill/take ");
+            System.out.println("What are you doing? buy/fill/take/remaining/exit ");
             String whatwedoing = in.next();
             if (whatwedoing.equals("buy")){
                 System.out.println("What you buy? 1 - espresso, 2 - Latte, 3 - cappucino");
@@ -55,6 +54,15 @@ public class CoffeeMachine {
             }
             else if (whatwedoing.equals("take")){
                 grn = 0;
+            }
+            else if (whatwedoing.equals("remaining")){
+                System.out.println("The coffee machine has: " + w + "  Water, " + m + " Milk, " + c + " Coffee, " + grn + " grn, " + stakan + " stakan");
+            }
+            else if (whatwedoing.equals("exit")){
+                System.exit(0);
+            }
+            else {
+                System.out.println("Incorrect");
             }
         }
     }
