@@ -4,13 +4,13 @@ public class TicTacToe {
     public static void main(String[] args){
         Scanner in = new Scanner(System.in);
         String[][] pole = new String[3][3];
-        System.out.println("Enter pole: ");
-        int t = 0;
-        for (int i = 0; i < 3; i++){
-            for (int i1 = 0; i1 < 3; i1++){
-                pole[i][i1] = in.next();
+        for (int i = 0; i < 3; i++) {
+            for (int i1 = 0; i1 < 3; i1++) {
+                pole[i][i1] = "_";
             }
         }
+        int t = 0;
+        int step = 0;
         for(;;) {
             for (int i = 0; i < 3; i++) {
                 System.out.println("\n----------");
@@ -28,8 +28,11 @@ public class TicTacToe {
                 System.out.println("1 to 3");
             } else if (pole[coord1 - 1][coord2 - 1].equals("X") || pole[coord1 - 1][coord2 - 1].equals("O")) {
                 System.out.println("Occupied");
-            } else {
+            } else if (step%2 == 0){
                 pole[coord1 - 1][coord2 - 1] = "X";
+            }
+            else {
+                pole[coord1 - 1][coord2 - 1] = "O";
             }
 
             for (int i = 0; i < 3; i++) {
@@ -60,6 +63,7 @@ public class TicTacToe {
                 System.out.println("\nDraw");
                 System.exit(0);
             }
+            step++;
         }
     }
 }
