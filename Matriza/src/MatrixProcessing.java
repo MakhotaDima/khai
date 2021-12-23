@@ -5,8 +5,9 @@ public class MatrixProcessing {
         Scanner in = new Scanner(System.in);
         int Matrix[][];
         int Matrix2[][];
+        double dsum =0;
         do {
-            System.out.println("Menu: 1 - sum, 2 - const, 3 - muls, 4 - transportirovka, 5 - exit");
+            System.out.println("Menu: 1 - sum, 2 - const, 3 - muls, 4 - transportirovka, 5 - determinate, 6 - exit");
             int menu = in.nextInt();
             System.out.println("Size matrix: ");
             int n = in.nextInt();
@@ -123,6 +124,37 @@ public class MatrixProcessing {
 
             }
             if (menu == 5){
+                double d = 1;
+                boolean end =true;
+                if (m == n){
+                    do {
+                        if (Matrix.length > 1){
+                            double[][] Matrix3 = new double[Matrix.length-1][Matrix[0].length-1];
+                            for (int i = 0; i < Matrix[0].length;i++){
+                                for (int i1 = 1; i1 < Matrix.length; i1++){
+                                    for (int i2 = 0; i2 < Matrix[0].length; i2++){
+                                        if (i2 < i){
+                                            Matrix3[i1-1][i2] = Matrix[i1][i2];
+                                        }else if(i2 > i){
+                                            Matrix3[i1-1][i2-1] = Matrix[i1][i2];
+                                        }
+                                    }
+                                }
+                                d = Math.pow(-1, i + 2) * Matrix[0][i] * d;
+                            }
+                        }
+                        else {
+                            dsum += d* Matrix[0][0];
+                            end = false;
+                        }
+                        System.out.println("determinate = " + dsum);
+                    }while (end == true);
+                }
+                else {
+                    System.out.println("ERROR");
+                }
+            }
+            if (menu == 6){
                 System.exit(0);
             }
         }while (true);
